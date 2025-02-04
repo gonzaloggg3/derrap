@@ -8,36 +8,29 @@ public class Dashboard_mecanico extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
+    private int idMecanico; // Variable para almacenar el ID del mecánico
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    Dashboard_mecanico frame = new Dashboard_mecanico();
-                    frame.setVisible(true);
-                    frame.setResizable(false);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+    // Constructor que recibe el ID del mecánico
+    public Dashboard_mecanico(int idMecanico) {
+        this.idMecanico = idMecanico; // Guardar el ID del mecánico
+        initialize();
     }
 
-    public Dashboard_mecanico() {
+    private void initialize() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 734, 493);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setLayout(null);
         setContentPane(contentPane);
-        
-                // Etiqueta "Mecanico" en la esquina superior derecha
-                JLabel lblMecanico = new JLabel("Mecanico");
-                lblMecanico.setFont(new Font("Arial", Font.PLAIN, 14));
-                lblMecanico.setForeground(Color.BLACK);
-                lblMecanico.setHorizontalAlignment(SwingConstants.RIGHT);
-                lblMecanico.setBounds(600, 15, 100, 20);
-                contentPane.add(lblMecanico);
+
+        // Etiqueta "Mecanico" en la esquina superior derecha
+        JLabel lblMecanico = new JLabel("Mecanico");
+        lblMecanico.setFont(new Font("Arial", Font.PLAIN, 14));
+        lblMecanico.setForeground(Color.BLACK);
+        lblMecanico.setHorizontalAlignment(SwingConstants.RIGHT);
+        lblMecanico.setBounds(600, 15, 100, 20);
+        contentPane.add(lblMecanico);
 
         // Título superior
         JLabel lblTitle = new JLabel("INICIO");
@@ -56,13 +49,13 @@ public class Dashboard_mecanico extends JFrame {
         btnOrdenesReparacion.setVerticalAlignment(SwingConstants.CENTER);
         btnOrdenesReparacion.setBackground(new Color(176, 190, 197));
         btnOrdenesReparacion.setBounds(100, 100, 200, 119);
-        btnOrdenesReparacion.setIcon(new ImageIcon("/src/img/clientes.png")); 
+        btnOrdenesReparacion.setIcon(new ImageIcon("/src/img/clientes.png"));
         btnOrdenesReparacion.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Acción del botón
-            	Ordenes_reparacion ordenes_reparacion = new Ordenes_reparacion();
-            	ordenes_reparacion.setVisible(true); // Mostrar ventana de gestión de clientes
-            	ordenes_reparacion.setResizable(false); // Desactivar el redimensionamiento
+                // Abrir la ventana de órdenes de reparación y pasar el ID del mecánico
+                Ordenes_reparacion ordenes_reparacion = new Ordenes_reparacion(idMecanico);
+                ordenes_reparacion.setVisible(true); // Mostrar ventana de órdenes de reparación
+                ordenes_reparacion.setResizable(false); // Desactivar el redimensionamiento
                 dispose(); // Opcional: cerrar la ventana actual
             }
         });
@@ -96,7 +89,6 @@ public class Dashboard_mecanico extends JFrame {
                 // Acción del botón
             }
         });
-        
         contentPane.add(btnSolicitudPiezas);
 
         // Botón Buscar vehículos
@@ -114,6 +106,4 @@ public class Dashboard_mecanico extends JFrame {
         });
         contentPane.add(btnBuscarVehiculos);
     }
-    
-   
 }

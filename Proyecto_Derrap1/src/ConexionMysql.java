@@ -134,7 +134,7 @@ public Connection conectar() {
 	    return ordenes;
 	}
 	
-	//gonzalo guapo follame
+	
 	
 	
 	
