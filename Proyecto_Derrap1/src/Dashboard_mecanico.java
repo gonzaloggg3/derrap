@@ -76,20 +76,23 @@ public class Dashboard_mecanico extends JFrame {
         });
         contentPane.add(btnConsultaStock);
 
-        // Botón Solicitud de piezas
-        JButton btnSolicitudPiezas = new JButton("Solicitud de piezas");
-        btnSolicitudPiezas.setFont(new Font("Arial", Font.PLAIN, 16));
-        btnSolicitudPiezas.setHorizontalAlignment(SwingConstants.CENTER);
-        btnSolicitudPiezas.setVerticalAlignment(SwingConstants.CENTER);
-        btnSolicitudPiezas.setBackground(new Color(176, 190, 197));
-        btnSolicitudPiezas.setBounds(100, 250, 200, 100);
-        btnSolicitudPiezas.setIcon(new ImageIcon("path/to/request_icon.png")); // Coloca el icono adecuado
-        btnSolicitudPiezas.addActionListener(new ActionListener() {
+        // Botón Mis Órdenes (antes Solicitud de piezas)
+        JButton btnMisOrdenes = new JButton("Mis Órdenes");
+        btnMisOrdenes.setFont(new Font("Arial", Font.PLAIN, 16));
+        btnMisOrdenes.setHorizontalAlignment(SwingConstants.CENTER);
+        btnMisOrdenes.setVerticalAlignment(SwingConstants.CENTER);
+        btnMisOrdenes.setBackground(new Color(176, 190, 197));
+        btnMisOrdenes.setBounds(100, 250, 200, 100);
+        btnMisOrdenes.setIcon(new ImageIcon("path/to/request_icon.png")); // Coloca el icono adecuado
+        btnMisOrdenes.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // Acción del botón
+                // Abrir la ventana de Mis Órdenes y pasar el ID del mecánico
+                Mis_ordenes misOrdenes = new Mis_ordenes(idMecanico);
+                misOrdenes.setVisible(true); // Mostrar ventana de Mis Órdenes
+                dispose(); // Opcional: cerrar la ventana actual
             }
         });
-        contentPane.add(btnSolicitudPiezas);
+        contentPane.add(btnMisOrdenes);
 
         // Botón Buscar vehículos
         JButton btnBuscarVehiculos = new JButton("Buscar vehículos");

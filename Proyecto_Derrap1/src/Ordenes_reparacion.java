@@ -79,6 +79,7 @@ public class Ordenes_reparacion extends JFrame {
                      usuarios u ON o.mecanico_asignado = u.id_usuario
                  WHERE 
                      o.mecanico_asignado IS NULL
+                     AND o.estado != 'Finalizada'  -- Excluir órdenes finalizadas
                  """)) {
 
             while (rs.next()) {
