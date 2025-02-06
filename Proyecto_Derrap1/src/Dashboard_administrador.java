@@ -78,6 +78,13 @@ public class Dashboard_administrador extends JFrame {
         contentPane.add(btnMecanicos);
 
         JButton btnOrdenes = new JButton("Órdenes de reparación");
+        btnOrdenes.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+                Administrador_ordenes administradorOrdenes = new Administrador_ordenes();
+                administradorOrdenes.setVisible(true);
+        		
+        	}
+        });
         btnOrdenes.setFont(new Font("Arial", Font.PLAIN, 16));
         btnOrdenes.setBackground(new Color(176, 190, 197));
         btnOrdenes.setBounds(50, 250, 200, 100);
