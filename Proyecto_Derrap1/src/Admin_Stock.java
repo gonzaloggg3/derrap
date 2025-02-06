@@ -6,7 +6,7 @@ import javax.swing.border.EmptyBorder;
 import java.sql.*;
 
 public class Admin_Stock extends JFrame {
-
+//hhfdhfoehfhs
     private static final long serialVersionUID = 1L;
     private JPanel contentPane;
     private JTextField txtDNI;
