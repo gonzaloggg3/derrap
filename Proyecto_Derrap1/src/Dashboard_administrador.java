@@ -91,10 +91,16 @@ public class Dashboard_administrador extends JFrame {
         contentPane.add(btnOrdenes);
 
         JButton btnRepuestos = new JButton("Gestión de repuestos");
+        btnRepuestos.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		Admin_Stock AdminStock=new Admin_Stock();
+        		AdminStock.setVisible(true);}
+        });
         btnRepuestos.setFont(new Font("Arial", Font.PLAIN, 16));
         btnRepuestos.setBackground(new Color(176, 190, 197));
         btnRepuestos.setBounds(300, 250, 200, 100);
         contentPane.add(btnRepuestos);
+        
 
         JButton btnInformes = new JButton("Informes");
         btnInformes.setFont(new Font("Arial", Font.PLAIN, 16));
