@@ -133,6 +133,59 @@ public Connection conectar() {
 	    }
 	    return ordenes;
 	}
+	public ArrayList<String[]> obtenerOrdenesReparacion2() {
+	    ArrayList<String[]> ordenes = new ArrayList<>();
+	    try (Connection conn = conectar();
+	         PreparedStatement stmt = conn.prepareStatement(
+	                 "SELECT id_orden, id_vehiculo, id_usuario, mecanico_asignado, estado, fecha_ingreso, fecha_finalizacion, descripcion FROM ordenes_reparacion");
+	         ResultSet rs = stmt.executeQuery()) {
+
+	        while (rs.next()) {
+	            String[] orden = new String[8];
+	            orden[0] = rs.getString("id_orden");
+	            orden[1] = rs.getString("id_vehiculo");
+	            orden[2] = rs.getString("id_usuario");
+	            orden[3] = rs.getString("mecanico_asignado");
+	            orden[4] = rs.getString("estado");
+	            orden[5] = rs.getString("fecha_ingreso");
+	            orden[6] = rs.getString("fecha_finalizacion");
+	            orden[7] = rs.getString("descripcion");
+	            ordenes.add(orden);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return ordenes;
+	}
+	 public ArrayList<String[]> obtenerOrdenesFinalizadas() {
+	        ArrayList<String[]> ordenes = new ArrayList<>();
+
+	        try (Connection conn = conectar();
+	             PreparedStatement stmt = conn.prepareStatement(
+	                     "SELECT id_orden, id_vehiculo, id_usuario, mecanico_asignado, estado, fecha_ingreso, fecha_finalizacion, descripcion " +
+	                     "FROM ordenes_reparacion " +
+	                     "WHERE estado = 'Finalizada'");
+	             ResultSet rs = stmt.executeQuery()) {
+
+	            while (rs.next()) {
+	                String[] orden = new String[8];
+	                orden[0] = rs.getString("id_orden"); // ID Orden
+	                orden[1] = rs.getString("id_vehiculo"); // ID Vehículo
+	                orden[2] = rs.getString("id_usuario"); // ID Usuario
+	                orden[3] = rs.getString("mecanico_asignado"); // Mecánico Asignado
+	                orden[4] = rs.getString("estado"); // Estado
+	                orden[5] = rs.getString("fecha_ingreso"); // Fecha Ingreso
+	                orden[6] = rs.getString("fecha_finalizacion"); // Fecha Finalización
+	                orden[7] = rs.getString("descripcion"); // Descripción
+
+	                ordenes.add(orden); // Agregar la orden a la lista
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+
+	        return ordenes; // Devolver la lista de órdenes finalizadas
+	    }
 	
 	
 	
