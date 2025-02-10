@@ -43,7 +43,7 @@ public class Admin_Stock extends JFrame {
     private void cargarDatos() {
         model.setRowCount(0);
         try {
-            String query = "SELECT id_pieza, nombre, marca, stock, precio_venta FROM Stock";
+            String query = "SELECT id_pieza, nombre, marca, stock, precio_venta FROM piezas";
             PreparedStatement stmt = cn.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -70,7 +70,7 @@ public class Admin_Stock extends JFrame {
         int option = JOptionPane.showConfirmDialog(this, fields, "Añadir Pieza", JOptionPane.OK_CANCEL_OPTION);
         if (option == JOptionPane.OK_OPTION) {
             try {
-                String query = "INSERT INTO Stock (nombre, marca, stock, precio_venta) VALUES (?, ?, ?, ?)";
+                String query = "INSERT INTO piezas (nombre, marca, stock, precio_venta) VALUES (?, ?, ?, ?)";
                 PreparedStatement stmt = cn.prepareStatement(query);
                 stmt.setString(1, nombreField.getText());
                 stmt.setString(2, marcaField.getText());
@@ -97,7 +97,7 @@ public class Admin_Stock extends JFrame {
         
         if (nuevoPrecio != null) {
             try {
-                String query = "UPDATE Stock SET precio_venta = ? WHERE id_pieza = ?";
+                String query = "UPDATE piezas SET precio_venta = ? WHERE id_pieza = ?";
                 PreparedStatement stmt = cn.prepareStatement(query);
                 stmt.setDouble(1, Double.parseDouble(nuevoPrecio));
                 stmt.setInt(2, id);
