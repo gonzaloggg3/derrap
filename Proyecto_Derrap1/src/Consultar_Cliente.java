@@ -86,12 +86,46 @@ public class Consultar_Cliente extends JFrame {
         scrollPane.setBounds(200, 280, 400, 200);
         contentPane.add(scrollPane);
 
+        // Cargar todos los clientes al iniciar
+        cargarClientes();
+
         btnBuscar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 buscarCliente();
             }
         });
+    }
+
+    private void cargarClientes() {
+        ConexionMysql conexion = new ConexionMysql();
+        Connection cn = conexion.conectar();
+        String query = "SELECT * FROM clientes";
+        try (PreparedStatement stmt = cn.prepareStatement(query)) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                StringBuilder resultado = new StringBuilder("LISTA DE CLIENTES\n\n");
+                while (rs.next()) {
+                    resultado.append("Nombre: ").append(rs.getString("nombre")).append("\n");
+                    resultado.append("Apellidos: ").append(rs.getString("apellidos")).append("\n");
+                    resultado.append("DNI: ").append(rs.getString("dni")).append("\n");
+                    resultado.append("Teléfono: ").append(rs.getString("telefono")).append("\n");
+                    resultado.append("Correo: ").append(rs.getString("email")).append("\n");
+                    resultado.append("Dirección: ").append(rs.getString("direccion")).append("\n");
+                    resultado.append("Fecha de Registro: ").append(rs.getString("fecha_registro")).append("\n");
+                    resultado.append("----------------------------\n");
+                }
+                txtResultado.setText(resultado.toString());
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error al cargar los clientes.", "Error", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            try {
+                if (cn != null) cn.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 
     private void buscarCliente() {
